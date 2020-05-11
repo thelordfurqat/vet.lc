@@ -1,18 +1,15 @@
 <?php
 
 use yii\widgets\Breadcrumbs; ?>
-<section class="wf100 p100 inner-header">
-    <div class="container">
-        <h1><?=$this->title?></h1>
+<nav aria-label="breadcrumb">
+    <?= Breadcrumbs::widget([
+        'options'=>[
+            'class'=>'breadcrumb',
+        ],
+        'tag'=>'ol',
+        'itemTemplate'=>' <li class="breadcrumb-item">{link}</li>',
+        'activeItemTemplate'=>' <li  class="breadcrumb-item active" aria-current="page" >{link}</li>',
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    ]) ?>
+</nav>
 
-            <?= Breadcrumbs::widget([
-                    'options'=>[
-                            'class'=>'',
-                    ],
-                'itemTemplate'=>' <li>{link}</li>',
-                'activeItemTemplate'=>' <li><a href="#">{link}</a></li>',
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-
-    </div>
-</section>

@@ -686,6 +686,7 @@ table, th, td {
 	line-height: 40px;
 	padding: 0;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+	text-align: center;
 }
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > li > a:hover, .pagination > li > a:focus, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
 	transition: all 0.3s ease 0s;

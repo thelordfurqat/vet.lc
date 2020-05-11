@@ -56,7 +56,7 @@ class MenuBuilder extends Widget{
     }
 
     public static function generateItems($res){
-        $parents = Category::find()->where(['lang_id'=>static::getLang()])->orderBy(['sort'=>SORT_ASC])->all();
+        $parents = Category::find()->where(['lang_id'=>static::getLang()])->andWhere(['<>','sort',0])->orderBy(['sort'=>SORT_ASC])->all();
         foreach($parents as $item){
             if($item->id == 1){
                 continue;
@@ -200,6 +200,7 @@ class MenuBuilder extends Widget{
                     $res = $res . '<li class=""><a href="' . $url . '" target="' . $target . '">' . $item->name . '</a></li>';
                 }
             }
+            else $res.= static::generateMapSubItem('',$item->id);
         }
         return $res;
     }
@@ -231,6 +232,79 @@ class MenuBuilder extends Widget{
 
         return $res;
 
+    }
+    public static function genereateLordsMap()
+    {
+        $result='<ul>';
+        $result.=static::generateLordsMapItem();
+        $result.='</ul>';
+    }
+    public static function generateLordsMapItem()
+    {
+        $result='';
+        foreach (Category::find()->where(['parent_id' => 1])->andWhere(['>','status',0])->andWhere(['<>','id',1])->all() as $item) {
+
+            if(Category::find()->where(['parent_id'=>$item->id])->orderBy(['sort'=>SORT_ASC])->andWhere(['status'=>1])->count()>0){
+                $url = "#";
+                $target = "";
+                $a = $item->code;
+                if($a[0]=='-'){
+                    if($a[1]=='h' and $a[2]=='t' and $a[3]=='t' and $a[4]=='p'){
+                        $url = substr($a,1,strlen($a)-2);
+                        $target = "_blank";
+                    }else{
+                        $url = substr($a,1,strlen($a)-2);
+                    }
+                }
+
+                $result .='<li><a href="'.$url.'" >'.$item->name.' </a>';
+                $result .= static::generateLordsMapSubItem($item->id);
+                $result .= '</li>';
+            }else{
+                $url = "#";
+                $target = "";
+                $a = $item->code;
+                if($a[0]=='-'){
+                    if($a[1]=='h' and $a[2]=='t' and $a[3]=='t' and $a[4]=='p'){
+                        $url = substr($a,1,strlen($a)-2);
+                        $target = "_blank";
+                    }else{
+                        $url = substr($a,1,strlen($a)-2);
+                    }
+                }else{
+                    if(strlen($item->icon)>0 and $item->icon!='#'){
+                        $url = Yii::$app->urlManager->createUrl([$item->icon,'code'=>$item->code]);
+                    }
+                }
+
+                $result .= '<li><a href="'.$url.'" target="'.$target.'">'.$item->name.' </a></li>';
+            }
+        }
+        return $result;
+    }
+    public static function generateLordsMapSubItem($parent_id){
+        $result='<ul>';
+        foreach (Category::find()->where(['parent_id' => $parent_id])->andWhere(['>', 'status', 0])->all() as $item) {
+            $url = "#";
+            $target = "";
+            $a = $item->code;
+            if($a[0]=='-'){
+                if($a[1]=='h' and $a[2]=='t' and $a[3]=='t' and $a[4]=='p'){
+                    $url = substr($a,1,strlen($a)-2);
+                    $target = "_blank";
+                }else{
+                    $url = substr($a,1,strlen($a)-2);
+                }
+            }else{
+                if(strlen($item->icon)>0 and $item->icon!='#'){
+                    $url = Yii::$app->urlManager->createUrl([$item->icon,'code'=>$item->code]);
+                }
+            }
+
+            $result .= '<li><a href="'.$url.'" target="'.$target.'">'.$item->name.' </a></li>';
+        }
+        $result.='</ul>';
+        return $result;
     }
 
 

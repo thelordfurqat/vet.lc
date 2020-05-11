@@ -8,14 +8,14 @@
             <div class="row">
                 <div class="col-md-6 col-xs-12 col-sm-6">
                     <ul class="info-left">
-                        <li><a href="#"><img src="/front-theme/img/flag.png"></a></li>
-                        <li><a href="#"><img src="/front-theme/img/gerb.png"></a></li>
-                        <li><a href="#"><img src="/front-theme/img/gimn.png"></a></li>
+                        <li><a href="/site/page?code=bayroq"><img src="/front-theme/img/flag.png"></a></li>
+                        <li><a href="/site/page?code=gerb"><img src="/front-theme/img/gerb.png"></a></li>
+                        <li><a href="/site/page?code=madhiya"><img src="/front-theme/img/gimn.png"></a></li>
                         <li>/</li>
-                        <li><a href="#" title="RSS"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" title="Sayt xaritasi"><i class="fa fa-sitemap"></i></a></li>
-                        <li><a href="#" title="Maxsus imkoniyatlar"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="#" title="Saytga kirish"><i class="fa fa-sign-in"></i></a></li>
+                        <li><a href="/site/rss" title="RSS"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="/site/map" title="Sayt xaritasi"><i class="fa fa-sitemap"></i></a></li>
+<!--                        <li><a href="#" title="Maxsus imkoniyatlar"><i class="fa fa-eye"></i></a></li>-->
+                        <li><a href="/admin" title="Saytga kirish"><i class="fa fa-sign-in"></i></a></li>
 
                     </ul>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="container-fluid">
                     <div class="mg-nav-widget-area">
                         <div class="row">
-                            <div class="col-md-5 col-sm-6 text-center-xs">
+                            <div class="col-md-7 col-sm-6 text-center-xs">
                                 <div class="navbar-header">
                                     <a href="" class="navbar-brand" rel="home" itemprop="url">
                                         <img  src="/front-theme/static/logo.png" class="custom-logo" alt="Xorazm viloyati hokimligi">
@@ -59,7 +59,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-md-7 col-sm-6">
+                            <div class="col-md-5 col-sm-6">
 
                                 <div class="row" >
                                     <div class="col-md-6">
@@ -77,7 +77,13 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="contact-card">
+                                            <a href="/site/contact"><button  type="button" style="width: 100%">Bog'lanish</button></a>
+                                        </div>
 
+                                        <div class="contact-card">
+                                            <a href="/site/page?code=qabul-kunlari"><button  type="button" style="width: 100%"> Qabul kunlari</button></a>
+                                        </div>
                                     </div>
                                 </div>
 

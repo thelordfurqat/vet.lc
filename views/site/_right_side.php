@@ -12,7 +12,7 @@ $dolzarb=News::find()->where($query)->andWhere(['cat_id'=>13])->orderBy(['show_c
 
     <!-- Izlew -->
     <div id="search-4" class="mg-widget widget_search">
-        <form role="search" method="get" id="searchform" action="">
+        <form role="search" method="get" id="searchform" action="/site/search">
             <div class="input-group">
                 <input type="search" class="form-control" placeholder="Search" value="" name="s">
                 <span class="input-group-btn btn-default">

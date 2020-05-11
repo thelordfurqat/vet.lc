@@ -11,13 +11,12 @@ $posts=\app\models\News::find()->where(['cat_id'=>$model->cat_id])->andWhere(['<
 
 use yii\helpers\Url; ?>
 
-<!--Blog Start-->
-<section class="wf100 p80 blog">
-    <div class="blog-details">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 col-md-8">
-                    <!--Blog Single Content Start-->
+<div id="content" class="container-fluid home">
+    <!--row-->
+    <div class="">
+        <div class="col-md-8 col-sm-8">
+            <div class="">
+                <div id="newsup_latest_post-1" class="newsup-front-page-content-widget mg-posts-sec mg-posts-modul-6">
                     <div class="blog-single-content">
                         <div id="primary" class="content-area post-single-layout1 vmagazine-lite-content">
                             <main id="main" class="site-main" role="main">
@@ -32,8 +31,8 @@ use yii\helpers\Url; ?>
 
                                     <div class="entry-meta clearfix">
                 <span class="posted-on">
-                    <i class="fa fa-clock-o"></i><?= $this->render('_date',['date'=>$model->created])?></span>
-                                        <span class="comments"><i class="fa fa-eye"></i><?= $model->show_counter?></span>
+                    <i class="fa fa-clock-o"></i> <?= $this->render('_date',['date'=>$model->created])?></span>
+                                        <span class="comments"><i class="fa fa-eye"></i> <?= $model->show_counter?></span>
                                     </div>
                                     <?php if($model->image!='default.jpg'){?>
                                         <figure>
@@ -80,7 +79,7 @@ use yii\helpers\Url; ?>
                                             <!-- I got these buttons from simplesharebuttons.com -->
                                             <div id="share-buttons">
 
-                                                <span>Тарқатиш:</span>
+                                                <span>Tarqatish:</span>
 
                                                 <!-- Email -->
                                                 <a href="mailto:?Subject=<?= $model->name?>&amp;Body=<?= $model->preview?> <?=\yii\helpers\Url::base(true).Yii::$app->urlManager->createUrl(['/site/news','code'=>$model->code])?>">
@@ -121,7 +120,7 @@ use yii\helpers\Url; ?>
 
                                                 <span class="pull-right" style="font-weight: bold;     margin-top: 8px;">
                             <?= $this->render('_date',['date'=>$model->created])?> -
-                            Автор: <?= $model->author->name?>
+                            Avtor: <?= $model->author->name?>
                         </span>
 
                                             </div>
@@ -136,45 +135,18 @@ use yii\helpers\Url; ?>
 
                                 </article><!-- #post-## -->
                             </main><!-- #main -->
-                            <?
-                            if(sizeof($posts)):
-                                ?>
-                                <hr style="background-color: rgba(0,0,0,0.34)"> <div class="section-title-2 mt-5">
-                                <h5>Mavzuga doir</h5>
-                                <h2>So'ngi ma'lumotlar</h2>
-                            </div>
-                                <div class="cpro-slider owl-carousel owl-theme">
-                                    <? foreach ($posts as $post) { ?>
 
-                                        <!--Pro Box-->
-                                        <div class="item">
-                                            <div class="pro-box">
-                                                <img src="/uploads/<?=$post->image?>" alt="" style="object-fit: cover; object-position: center; height: 300px">
-                                                <h5><?=short_str($post->name,70)?></h5>
-                                                <div class="pro-hover">
-                                                    <!--                                                <h6>Forest & Tree Planting</h6>-->
-                                                    <p><?=short_str($post->name,70)?></p>
-                                                    <a href="<?=Url::to(['site/view','code'=>$post->code])?>">Batafsil</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--Pro Box End-->
-                                        <?
-                                    } ?>
-                                </div>
-                            <?endif;?>
                         </div><!-- #primary -->
                     </div>
-                    <!--Blog Single Content End-->
                 </div>
-                <!--Sidebar Start-->
-                <div class="col-lg-3 col-md-4">
-                    <?=$this->render('_secondary')?>
 
-                </div>
-                <!--Sidebar End-->
+
             </div>
         </div>
-    </div>
-</section>
-<!--Blog End-->
+
+        <!-- Sidebar -->
+
+        <aside class="col-md-4 col-sm-4">
+            <?=$this->render('_right_side')?>
+        </aside><!-- #secondary -->
+    </div><!-- /col-md-4 -->

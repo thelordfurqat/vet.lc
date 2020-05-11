@@ -1,59 +1,83 @@
 <?php
 $this->title = $name;
 $this->params['breadcrumbs'][] = $name;
-
+/** @var \yii\data\Pagination $pages */
 use yii\helpers\Url; ?>
 
+<div id="content" class="container-fluid home">
+    <!--row-->
+    <div class="">
+        <div class="col-md-8 col-sm-8">
+            <div class="">
+                <div id="newsup_latest_post-1" class="newsup-front-page-content-widget mg-posts-sec mg-posts-modul-6">
+                    <!-- mg-posts-sec mg-posts-modul-6 -->
+                    <div class="mg-posts-sec mg-posts-modul-6">
+                        <!-- mg-sec-title -->
+                        <div class="mg-sec-title"><h4><?=$name?></h4></div>
+                        <!-- // mg-sec-title -->
+                        <!-- mg-posts-sec-inner -->
+                        <div class="mg-posts-sec-inner">
+                            <?php if (count($model) == 0) {
+                                echo $this->render('_searchnotfound');
+                            } ?>
+                            <!--Project Box Start-->
+                            <? foreach ($model as $item) {
+                                $url=Url::to(['/site/view','code'=>$item->code]);
+                                $urlNews=Url::to(['/site/news','code'=>$item->cat->code]);
+                                ?>
+                                <article class="mg-posts-sec-post">
+                                    <div class="standard_post">
+                                        <div class="mg-thum-list col-md-4">
+                                            <div class="mg-post-thumb" style="display: flex; margin-bottom: 10px; max-height: 200px;">
+                                                <img src="/uploads/<?=$item->image?>" style=" object-fit: cover; width: 100%">
+                                            </div>
+                                        </div>
+                                        <div class="list_content">
+                                            <div class="mg-sec-top-post">
+                                                <div class="mg-blog-category">
+                                                    <a class="newsup-categories category-color-1" href="<?=$urlNews?>" ><?=$item->cat->name?></a>
+                                                </div>
+                                                <h1 class="title"><a href="<?=$url?>"><?=$item->name?></a></h1>
+                                                <div class="media-body">
+                                                    <span><i class="fa fa-clock-o" aria-hidden="true"> </i> <?=dateTime_($item->created)?></span>
+                                                    <span><i class="fa fa-eye" aria-hidden="true"> </i> <?=$item->show_counter?></span>
+                                                </div>
+                                            </div>
+                                            <div class="mg-posts-sec-post-content">
+                                                <div class="mg-content">
+                                                    <p><?=mb_substr($item->preview,0,235,'utf8')?><?=strlen($item->preview)>234?'...':''?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            <? } ?>
+                            <nav>
+                                <?=
+                                \yii\widgets\LinkPager::widget(['pagination'=>$pages,
 
-<!--Causes Start-->
-<section class="wf100 p80 projects">
-    <div class="projects-list">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 col-md-8">
-                    <?php if (count($model) == 0) {
-                        echo $this->render('_searchnotfound');
-                    } ?>
-                    <!--Project Box Start-->
-                    <? foreach ($model as $item) { ?>
-                        <div class="pro-list-box">
-                            <div class="pro-thumb"><a href="<?=Url::to(['/site/view','code'=>$item->code])?>"><i class="fas fa-eye"></i></a>
-                                <img src="/uploads/<?=$item->image?>" style="object-fit: cover; object-position: center; height: 300px" alt="">
-                            </div>
-                            <div class="pro-txt">
-                                <h3><a href="<?=Url::to(['/site/view','code'=>$item->code])?>"><?=$item->name?></a></h3>
-                                <p> <?=Yii::$app->formatter->asDate($item->created)?> </p>
-                                <a href="<?=Url::to(['/site/view','code'=>$item->code])?>" class="view">Batafsil</a>
-                            </div>
-                        </div>
-                    <? } ?>
-                    <!--Project Box End-->
-                </div>
-                <div class="col-lg-3 col-md-4">
-                    <?=$this->render('_secondary')?>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="gt-pagination mt20">
-                        <nav>
-                            <?= \yii\widgets\LinkPager::widget(['pagination'=>$pages,
-
-                                'options'=>[
-                                    'class'=>'pagination justify-content-end mb-0',
-                                ],
+                                    'options'=>[
+                                        'class'=>'pagination ',
+                                    ],
 
 //                                'linkContainerOptions'=>['class'=>'page-item'],
-                                'linkOptions'=>['class'=>'page-link'],
+                                    'linkOptions'=>['class'=>'page-link'],
 
-                            ]);?>
+                                ]);?>
 
-                        </nav>
-                    </div>
+                            </nav>
+                        </div> <!-- // mg-posts-sec-inner -->
+                    </div> <!-- // mg-posts-sec block_6 -->
                 </div>
+
+
             </div>
         </div>
-    </div>
-</section>
+
+        <!-- Sidebar -->
+
+        <aside class="col-md-4 col-sm-4">
+            <?=$this->render('_right_side')?>
+        </aside><!-- #secondary -->
+</div><!-- /col-md-4 -->
 

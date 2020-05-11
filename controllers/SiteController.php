@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\MenuBuilder;
 use app\models\Appeals;
 use app\models\Category;
 use app\models\News;
@@ -11,6 +12,7 @@ use app\models\VoteAns;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
@@ -80,7 +82,7 @@ class SiteController extends Controller
             'photo_album'=>$photo_album,
             'category_for_slider'=>$category_for_slider,
             'most_viewed_posts'=>$most_viewed_posts,
-            'title'=>'Hazorasp tuman fermerlar kengashi rasmiy veb sayti'
+            'title'=>'Xorazm viloyati veterinariya va chorvachilikni rivojlantirish boshqarmasi rasmiy veb sayti'
         ]);
     }
 
@@ -130,7 +132,7 @@ class SiteController extends Controller
 
         if($code == null){
             $code = "desc";
-            $name = "Барча хабарлар";
+            $name = "Barcha habarlar";
         }
         $model = null;
         switch ($code){
@@ -154,7 +156,7 @@ class SiteController extends Controller
             throw new NotFoundHttpException();
         }
         $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => 5]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSize' => 10]);
         $models = $model->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
@@ -316,6 +318,30 @@ class SiteController extends Controller
                 echo "xatolik22";
             }
         }
+    }
+    public function actionRss()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_XML;
+        header('Access-Control-Allow-Origin: *');
+        header('Content-type: application/json;charset=utf-8');
+        $news = News::find()->all();
+        $res = ArrayHelper::toArray($news,[
+            'app\models\News'=>[
+                'code',
+                'name',
+                'preview'
+            ]
+            ]);
+        echo json_encode($res);
+       exit;
+
+    }
+    public function actionMap()
+    {
+       $data = MenuBuilder::generateLordsMapItem();
+       return $this->render('map',[
+           'data'=>$data,
+       ]);
     }
 
 }

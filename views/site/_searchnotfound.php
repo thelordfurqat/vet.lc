@@ -4,8 +4,6 @@
     </header><!-- .page-header -->
 
     <div class="page-content">
-
-        <p>Kechirasiz, Hech nima topilmadi </p>
         <div class="side-widget">
             <h5>Qidirish</h5>
             <div class="side-search">
@@ -15,12 +13,24 @@
 
                 ?>
 
-                <input type="search" class="form-control" autocomplete="off" placeholder="Kalit soʼz kiriting ..."
-                       value="" name="s">
-                <button type="submit"><i class="fas fa-search"></i></button>
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" value="" name="s">
+                    <span class="input-group-btn btn-default">
+          <button type="submit" class="btn btn-hover" style="height: 40px; line-height: 20px;"> <i class="fa fa-search"></i> </button>
+          </span>
+                </div>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
+        <br>
+        <p>Kechirasiz, Hech nima topilmadi </p>
+
 
     </div><!-- .page-content -->
 </section>
+
+<style>
+    .btn-hover:hover{
+        color:#fff;
+    }
+</style>
