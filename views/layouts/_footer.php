@@ -70,6 +70,7 @@ $boshliq = \app\models\User::find()->where(['role_id' => 4])->one();
                                             <img src="http://cbu.uz/uzc/informer/?r_choose=USD_EUR_RUB" alt="">
                                             <div class="fp-text">
                                                 <h6><a href="#">Valyuta kurslari</a></h6>
+
                                             </div>
                                         </div>
                                     </div>
