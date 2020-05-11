@@ -6,6 +6,7 @@ use \kartik\datetime\DateTimePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 /* @var $form yii\widgets\ActiveForm */
+$model->password='';
 ?>
 
 <div class="user-form">
@@ -43,7 +44,7 @@ use \kartik\datetime\DateTimePicker;
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true,'type'=>'email']) ?>
                 </div>
                 <div class="col-md-6">
-                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true,'type'=>'number']) ?>
+                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true,]) ?>
                 </div>
             </div>
 
